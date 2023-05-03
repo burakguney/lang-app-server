@@ -1,7 +1,13 @@
 import express from 'express';
 import wordSchema from '../schemas/word.js';
 
-const createWord = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+const createWord = async (req, res) => {
     try {
         const { turkish, english, hint, category } = req.body;
 
@@ -19,7 +25,13 @@ const createWord = async (req = express.request, res = express.response) => {
     }
 }
 
-const getWords = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+const getWords = async (req, res) => {
     try {
         const words = await wordSchema.getWords();
 
@@ -30,7 +42,13 @@ const getWords = async (req = express.request, res = express.response) => {
     }
 }
 
-const getWordsByCategory = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+const getWordsByCategory = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -43,7 +61,13 @@ const getWordsByCategory = async (req = express.request, res = express.response)
     }
 }
 
-const updateWordById = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+const updateWordById = async (req, res) => {
     try {
         const { turkish, english, hint, category } = req.body;
         const { id } = req.params;
@@ -62,7 +86,13 @@ const updateWordById = async (req = express.request, res = express.response) => 
     }
 }
 
-const deleteWordById = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+const deleteWordById = async (req, res) => {
     try {
         const { id } = req.params;
 

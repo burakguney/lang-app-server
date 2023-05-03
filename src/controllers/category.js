@@ -1,7 +1,13 @@
 import express from 'express';
 import categorySchema from '../schemas/category.js';
 
-const createCategory = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @returns
+ */
+const createCategory = async (req, res) => {
     try {
         const { name } = req.body;
 
@@ -16,7 +22,13 @@ const createCategory = async (req = express.request, res = express.response) => 
     }
 }
 
-const getCategories = async (req = express.request, res = express.response) => {
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+const getCategories = async (req, res) => {
     try {
         const categories = await categorySchema.getCategories();
 
