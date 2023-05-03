@@ -11,13 +11,13 @@ const WordSchema = new mongoose.Schema({
     }
 })
 
-const WordModel = mongoose.model('Word', WordSchema);
+const Word = mongoose.model('Word', WordSchema);
 
-const getWords = () => WordModel.find().populate('category', 'name');
-const getWordById = (id) => WordModel.findById(id).populate('category', 'name');
-const getWordsByCategory = (category) => WordModel.find({ 'category': category });
-const createWord = (word) => new WordModel(word).save().then((word) => word.toObject());
-const deleteWordById = (id) => WordModel.findOneAndDelete({ _id: id });
-const updateWordById = (id, values) => WordModel.findByIdAndUpdate(id, values);
+const getWords = () => Word.find().populate('category', 'name');
+const getWordById = (id) => Word.findById(id).populate('category', 'name');
+const getWordsByCategory = (category) => Word.find({ 'category': category });
+const createWord = (word) => new Word(word).save().then((word) => word.toObject());
+const deleteWordById = (id) => Word.findOneAndDelete({ _id: id });
+const updateWordById = (id, values) => Word.findByIdAndUpdate(id, values);
 
-export default { getWords, getWordById, getWordsByCategory, createWord, deleteWordById, updateWordById };
+export default { Word, getWords, getWordById, getWordsByCategory, createWord, deleteWordById, updateWordById };

@@ -27,9 +27,9 @@ const startServer = () => {
         app.listen(PORT, () => {
             console.log(`Server listening on port ${PORT}`);
         });
-    } catch (error) {
-        console.error(error.message);
-        throw error;
+    } catch (err) {
+        console.error(err.message);
+        throw err;
     }
 };
 

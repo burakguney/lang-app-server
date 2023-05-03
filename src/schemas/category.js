@@ -4,12 +4,12 @@ const CategorySchema = new mongoose.Schema({
     name: { type: String, required: true }
 })
 
-const CategoryModel = mongoose.model('Category', CategorySchema);
+const Category = mongoose.model('Category', CategorySchema);
 
-const getCategories = () => CategoryModel.find();
-const getCategoryById = (id) => CategoryModel.findById(id);
-const createCategory = (category) => new CategoryModel(category).save().then((category) => category.toObject());
-const deleteCategoryById = (id) => CategoryModel.findOneAndDelete({ _id: id });
-const updateCategoryById = (id, values) => CategoryModel.findByIdAndUpdate(id, values);
+const getCategories = () => Category.find();
+const getCategoryById = (id) => Category.findById(id);
+const createCategory = (category) => new Category(category).save().then((category) => category.toObject());
+const deleteCategoryById = (id) => Category.findOneAndDelete({ _id: id });
+const updateCategoryById = (id, values) => Category.findByIdAndUpdate(id, values);
 
-export default { getCategories, getCategoryById, createCategory, deleteCategoryById, updateCategoryById }
+export default { Category, getCategories, getCategoryById, createCategory, deleteCategoryById, updateCategoryById }
