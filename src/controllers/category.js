@@ -1,5 +1,5 @@
-const express = require('express');
-const categorySchema = require('../schemas/category');
+import express from 'express';
+import categorySchema from '../schemas/category.js';
 
 const createCategory = async (req = express.request, res = express.response) => {
     try {
@@ -27,4 +27,4 @@ const getCategories = async (req = express.request, res = express.response) => {
     }
 }
 
-module.exports = { createCategory, getCategories };
+export default { createCategory, getCategories };

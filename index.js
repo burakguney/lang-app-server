@@ -1,10 +1,11 @@
 //Imports
-const express = require('express');
-const database = require('./database');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
 
-const wordRoute = require("./src/routes/word");
-const categoryRoute = require('./src/routes/category');
+import database from './database.js';
+
+import wordRoute from "./src/routes/word.js";
+import categoryRoute from './src/routes/category.js';
 
 const startServer = () => {
     try {

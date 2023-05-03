@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const WordSchema = new Schema({
+const WordSchema = new mongoose.Schema({
     turkish: { type: String, required: true },
     english: { type: String, required: true },
     hint: { type: String, required: true },
     category: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
         required: true
     }
@@ -21,4 +20,4 @@ const createWord = (word) => new WordModel(word).save().then((word) => word.toOb
 const deleteWordById = (id) => WordModel.findOneAndDelete({ _id: id });
 const updateWordById = (id, values) => WordModel.findByIdAndUpdate(id, values);
 
-module.exports = { getWords, getWordById, getWordsByCategory, createWord, deleteWordById, updateWordById };
+export default { getWords, getWordById, getWordsByCategory, createWord, deleteWordById, updateWordById };

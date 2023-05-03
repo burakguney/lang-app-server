@@ -1,5 +1,5 @@
-const express = require('express');
-const wordController = require('../controllers/word');
+import express from 'express';
+import wordController from '../controllers/word.js';
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.get('/category/:id', wordController.getWordsByCategory);
 router.put('/:id', wordController.updateWordById);
 router.delete('/:id', wordController.deleteWordById);
 
-module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
-const express = require('express');
-const wordSchema = require('../schemas/word');
+import express from 'express';
+import wordSchema from '../schemas/word.js';
 
 const createWord = async (req = express.request, res = express.response) => {
     try {
@@ -75,4 +75,4 @@ const deleteWordById = async (req = express.request, res = express.response) => 
     }
 }
 
-module.exports = { createWord, getWords, getWordsByCategory, updateWordById, deleteWordById };
+export default { createWord, getWords, getWordsByCategory, updateWordById, deleteWordById };

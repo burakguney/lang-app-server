@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const CategorySchema = new Schema({
+const CategorySchema = new mongoose.Schema({
     name: { type: String, required: true }
 })
 
@@ -13,4 +12,4 @@ const createCategory = (category) => new CategoryModel(category).save().then((ca
 const deleteCategoryById = (id) => CategoryModel.findOneAndDelete({ _id: id });
 const updateCategoryById = (id, values) => CategoryModel.findByIdAndUpdate(id, values);
 
-module.exports = { getCategories, getCategoryById, createCategory, deleteCategoryById, updateCategoryById };
+export default { getCategories, getCategoryById, createCategory, deleteCategoryById, updateCategoryById }
