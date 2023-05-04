@@ -1,10 +1,7 @@
-import express from 'express';
-import categorySchema from '../schemas/category.js';
+import { Request, Response } from 'express';
+import categorySchema from '../schemas/categorySchema';
 
-const router = express.Router();
-
-//getCategories
-router.get('/getCategories', async (req, res) => {
+const getCategories = async (req: Request, res: Response) => {
     try {
         const categories = await categorySchema.getCategories();
 
@@ -13,10 +10,9 @@ router.get('/getCategories', async (req, res) => {
         console.log(error);
         return res.status(400).send(error.message);
     }
-});
+}
 
-//createCategory
-router.post('/createCategory', async (req, res) => {
+const createCategory = async (req: Request, res: Response) => {
     try {
         const { name } = req.body;
 
@@ -29,6 +25,6 @@ router.post('/createCategory', async (req, res) => {
         console.log(error);
         return res.status(400).send(error.message);
     }
-});
+}
 
-export default router;
+export default { getCategories, createCategory };

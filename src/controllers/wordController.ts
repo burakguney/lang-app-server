@@ -1,10 +1,7 @@
-import express from 'express';
-import wordSchema from '../schemas/word.js';
+import { Request, Response } from 'express';
+import wordSchema from '../schemas/wordSchema';
 
-const router = express.Router();
-
-//creteWord
-router.post('/createWord', async (req, res) => {
+const createWord = async (req: Request, res: Response) => {
     try {
         const { turkish, english, hint, category } = req.body;
 
@@ -20,10 +17,9 @@ router.post('/createWord', async (req, res) => {
         console.log(err);
         return res.status(400).send(err.message);
     }
-});
+}
 
-//getWords
-router.get('/getWords', async (req, res) => {
+const getWords = async (req: Request, res: Response) => {
     try {
         const words = await wordSchema.getWords();
 
@@ -32,10 +28,9 @@ router.get('/getWords', async (req, res) => {
         console.log(err);
         return res.status(400).send(err.message);
     }
-});
+}
 
-//getWordById
-router.get('/getWordById/:id', async (req, res) => {
+const getWordById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
@@ -46,15 +41,13 @@ router.get('/getWordById/:id', async (req, res) => {
         console.log(err);
         return res.status(400).send(err.message);
     }
-});
+}
 
-//getWordsByCategoryId
-router.get('/getWordsByCategoryId/:id', async (req, res) => {
+const getWordsByCategoryId = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
         let words = await wordSchema.getWordsByCategoryId(id);
-
         let wordsForGame = new Array();
 
         while (wordsForGame.length < 4) {
@@ -68,10 +61,9 @@ router.get('/getWordsByCategoryId/:id', async (req, res) => {
         console.log(err);
         return res.status(400).send(err.message);
     }
-});
+}
 
-//updateWordById
-router.put('/updateWordById/:id', async (req, res) => {
+const updateWordById = async (req: Request, res: Response) => {
     try {
         const { turkish, english, hint, category } = req.body;
         const { id } = req.params;
@@ -88,10 +80,9 @@ router.put('/updateWordById/:id', async (req, res) => {
         console.log(err);
         return res.status(400).send(err.message);
     }
-});
+}
 
-//deleteWordById
-router.delete('/deleteWordById/:id', async (req, res) => {
+const deleteWordById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
@@ -102,6 +93,6 @@ router.delete('/deleteWordById/:id', async (req, res) => {
         console.log(err);
         return res.status(400).send(err.message);
     }
-});
+}
 
-export default router;
+export default { createWord, getWords, getWordById, getWordsByCategoryId, updateWordById, deleteWordById };
