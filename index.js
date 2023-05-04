@@ -4,9 +4,6 @@ import dotenv from 'dotenv';
 
 import database from './database.js';
 
-import adminWordRoute from './src/routes/admin/word.js';
-import adminCategoryRoute from './src/routes/admin/category.js';
-
 import wordRoute from "./src/routes/word.js";
 import categoryRoute from './src/routes/category.js';
 
