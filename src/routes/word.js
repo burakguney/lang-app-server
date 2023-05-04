@@ -48,14 +48,22 @@ router.get('/getWordById/:id', async (req, res) => {
     }
 });
 
-//getWordsByCategory
-router.get('/getWordsByCategory/:id', async (req, res) => {
+//getWordsByCategoryId
+router.get('/getWordsByCategoryId/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
-        const words = await wordSchema.getWordsByCategory(id);
+        let words = await wordSchema.getWordsByCategoryId(id);
 
-        return res.status(200).json(words);
+        let wordsForGame = new Array();
+
+        while (wordsForGame.length < 4) {
+            let choosenWord = words[Math.floor(Math.random() * words.length)];
+            wordsForGame.push(choosenWord);
+            words = words.filter(word => word !== choosenWord);
+        }
+
+        return res.status(200).json(wordsForGame);
     } catch (err) {
         console.log(err);
         return res.status(400).send(err.message);
