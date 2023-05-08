@@ -5,12 +5,7 @@ const createWord = async (req: Request, res: Response) => {
     try {
         const { turkish, english, hint, category } = req.body;
 
-        const word = await wordSchema.createWord({
-            turkish: turkish,
-            english: english,
-            hint: hint,
-            category: category
-        });
+        const word = await wordSchema.createWord({ turkish, english, hint, category });
 
         return res.status(201).json(word);
     } catch (err) {
@@ -68,12 +63,7 @@ const updateWordById = async (req: Request, res: Response) => {
         const { turkish, english, hint, category } = req.body;
         const { id } = req.params;
 
-        const word = await wordSchema.updateWordById(id, {
-            turkish: turkish,
-            english: english,
-            hint: hint,
-            category: category
-        })
+        const word = await wordSchema.updateWordById(id, { turkish, english, hint, category });
 
         return res.status(200).json(word);
     } catch (err) {

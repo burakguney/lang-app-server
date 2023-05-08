@@ -9,9 +9,7 @@ const MONGODB_URL = process.env.MONGODB_URL!;
 
 const app = express();
 
-app.use(cors({
-    credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
