@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import wordSchema from '../schemas/wordSchema';
+import categorySchema from '../schemas/categorySchema';
 
 const createWord = async (req: Request, res: Response) => {
     try {
@@ -38,11 +39,13 @@ const getWordById = async (req: Request, res: Response) => {
     }
 }
 
-const getWordsByCategoryId = async (req: Request, res: Response) => {
+const getWordsByCategory = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const { categoryName } = req.params;
 
-        let words = await wordSchema.getWordsByCategoryId(id);
+        const category = await categorySchema.getCategoryByName(categoryName);
+
+        let words = await wordSchema.getWordsByCategory(category._id.toString());
         let wordsForGame = new Array();
 
         while (wordsForGame.length < 4) {
@@ -85,4 +88,4 @@ const deleteWordById = async (req: Request, res: Response) => {
     }
 }
 
-export default { createWord, getWords, getWordById, getWordsByCategoryId, updateWordById, deleteWordById };
+export default { createWord, getWords, getWordById, getWordsByCategory, updateWordById, deleteWordById };
