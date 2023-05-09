@@ -45,11 +45,20 @@ const getWordsByCategory = async (req: Request, res: Response) => {
 
         const category = await categorySchema.getCategoryByName(categoryName);
 
+        if (!category) {
+            return res.status(400).json({ "message": "Category not found." });
+        }
+
         let words = await wordSchema.getWordsByCategory(category._id.toString());
-        let wordsForGame = new Array();
+
+        if (words.length === 0) {
+            return res.sendStatus(204);
+        }
+
+        const wordsForGame = new Array();
 
         while (wordsForGame.length < 4) {
-            let choosenWord = words[Math.floor(Math.random() * words.length)];
+            const choosenWord = words[Math.floor(Math.random() * words.length)];
             wordsForGame.push(choosenWord);
             words = words.filter(word => word !== choosenWord);
         }
