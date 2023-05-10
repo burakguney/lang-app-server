@@ -12,9 +12,9 @@ const WordSchema = new mongoose.Schema({
 
 const Word = mongoose.model('Word', WordSchema);
 
-const getWords = () => Word.find().populate('category', 'name');
-const getWordById = (id: string) => Word.findById(id).populate('category', 'name');
-const getWordsByCategory = (id: string) => Word.find({ category: id }).populate('category', 'name');
+const getWords = () => Word.find().populate('category', 'name description');
+const getWordById = (id: string) => Word.findById(id).populate('category', 'name description');
+const getWordsByCategory = (id: string) => Word.find({ category: id }).populate('category', 'name description');
 const createWord = (word: Record<string, any>) => new Word(word).save().then((word) => word.toObject());
 const deleteWordById = (id: string) => Word.findOneAndDelete({ _id: id });
 const updateWordById = (id: string, values: Record<string, any>) => Word.findByIdAndUpdate(id, values);

@@ -8,8 +8,6 @@ const createWord = async (req: Request, res: Response) => {
 
         const word = await wordSchema.createWord({ turkish, english, category });
 
-        console.log(word);
-
         return res.status(201).json(word);
     } catch (err) {
         console.log(err);
@@ -47,15 +45,7 @@ const getWordsByCategory = async (req: Request, res: Response) => {
 
         const category = await categorySchema.getCategoryByName(categoryName);
 
-        if (!category) {
-            return res.status(400).json({ "message": "Category not found." });
-        }
-
         let words = await wordSchema.getWordsByCategory(category._id.toString());
-
-        if (words.length === 0) {
-            return res.sendStatus(204);
-        }
 
         const wordsForGame = new Array();
 
