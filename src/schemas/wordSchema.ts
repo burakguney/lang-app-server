@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const WordSchema = new mongoose.Schema({
     turkish: { type: String, required: true },
     english: { type: String, required: true },
-    hint: { type: String, required: true },
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',

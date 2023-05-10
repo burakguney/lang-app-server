@@ -14,9 +14,9 @@ const getCategories = async (req: Request, res: Response) => {
 
 const createCategory = async (req: Request, res: Response) => {
     try {
-        const { name } = req.body;
+        const { name, description, } = req.body;
 
-        const category = await categorySchema.createCategory({ name });
+        const category = await categorySchema.createCategory({ name, description });
 
         return res.status(200).json(category);
     } catch (error) {
@@ -39,6 +39,19 @@ const updateCategoryById = async (req: Request, res: Response) => {
     }
 }
 
+const deleteCategoryById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+
+        const category = await categorySchema.deleteCategoryById(id);
+
+        return res.status(200).json(category);
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error.message);
+    }
+}
+
 const getCategoryById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
@@ -52,4 +65,4 @@ const getCategoryById = async (req: Request, res: Response) => {
     }
 }
 
-export default { getCategories, createCategory, updateCategoryById, getCategoryById };
+export default { getCategories, createCategory, updateCategoryById, deleteCategoryById, getCategoryById };

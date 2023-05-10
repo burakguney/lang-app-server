@@ -4,9 +4,11 @@ import categorySchema from '../schemas/categorySchema';
 
 const createWord = async (req: Request, res: Response) => {
     try {
-        const { turkish, english, hint, category } = req.body;
+        const { turkish, english, category } = req.body;
 
-        const word = await wordSchema.createWord({ turkish, english, hint, category });
+        const word = await wordSchema.createWord({ turkish, english, category });
+
+        console.log(word);
 
         return res.status(201).json(word);
     } catch (err) {
@@ -72,10 +74,10 @@ const getWordsByCategory = async (req: Request, res: Response) => {
 
 const updateWordById = async (req: Request, res: Response) => {
     try {
-        const { turkish, english, hint, category } = req.body;
+        const { turkish, english, category } = req.body;
         const { id } = req.params;
 
-        const word = await wordSchema.updateWordById(id, { turkish, english, hint, category });
+        const word = await wordSchema.updateWordById(id, { turkish, english, category });
 
         return res.status(200).json(word);
     } catch (err) {

@@ -7,4 +7,5 @@ export default (router: Router) => {
     router.post('/api/category', categoryController.createCategory);
     router.put('/api/category/:id', categoryController.updateCategoryById);
     router.get('/api/category/:id', categoryController.getCategoryById);
+    router.delete('/api/category/:id', categoryController.deleteCategoryById);
 }
